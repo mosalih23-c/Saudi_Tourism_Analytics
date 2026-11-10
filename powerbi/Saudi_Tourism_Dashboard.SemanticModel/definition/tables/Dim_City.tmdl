@@ -1,0 +1,31 @@
+table Dim_City
+	lineageTag: 6cb99d02-633a-4051-8e67-d9a630f7296c
+
+	column City
+		dataType: string
+		lineageTag: f540cacb-cf42-4f85-8c44-8da1c27055e7
+		summarizeBy: none
+		sourceColumn: City
+
+	column City_Raw
+		dataType: string
+		lineageTag: 9b00339c-33b5-4be7-8536-f1ebc009629b
+		summarizeBy: none
+		sourceColumn: City_Raw
+
+	column Is_Other
+		dataType: boolean
+		lineageTag: 9076957d-173c-4f3d-9eaa-473edebee2cd
+		summarizeBy: none
+		sourceColumn: Is_Other
+
+	partition Dim_City = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Dim_City.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"City", type text}, {"City_Raw", type text}, {"Is_Other", type logical}}, "en-US")
+				in
+				    Typed
+

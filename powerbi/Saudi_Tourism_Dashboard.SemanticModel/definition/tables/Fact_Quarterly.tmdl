@@ -1,0 +1,120 @@
+table Fact_Quarterly
+	lineageTag: ad5eb681-3e8d-49d6-a675-1136151245ea
+
+	column Apartments_Count
+		dataType: double
+		isHidden
+		lineageTag: 675f67b5-7d33-4ac2-9dd9-9c9a4f1e3b80
+		summarizeBy: none
+		sourceColumn: Apartments_Count
+
+	column Hotels_Count
+		dataType: double
+		isHidden
+		lineageTag: 01536539-2285-4eea-bab6-8737cf40fa80
+		summarizeBy: none
+		sourceColumn: Hotels_Count
+
+	column Licensed_Facilities
+		dataType: double
+		isHidden
+		lineageTag: 5cd06741-f38d-468c-9a8c-20a29bfd894a
+		summarizeBy: none
+		sourceColumn: Licensed_Facilities
+
+	column Occupancy_Apartments
+		dataType: double
+		isHidden
+		lineageTag: 35b2869d-cd6c-4f6f-8caf-a554459925c3
+		summarizeBy: none
+		sourceColumn: Occupancy_Apartments
+
+	column Occupancy_Hotels
+		dataType: double
+		isHidden
+		lineageTag: 9ddf4be3-abeb-4eac-825d-930fca952a32
+		summarizeBy: none
+		sourceColumn: Occupancy_Hotels
+
+	column ADR_Apartments
+		dataType: double
+		isHidden
+		lineageTag: 87ceb3a8-a53f-4775-b7e3-94224660dddf
+		summarizeBy: none
+		sourceColumn: ADR_Apartments
+
+	column ADR_Hotels
+		dataType: double
+		isHidden
+		lineageTag: 1799d0b6-0286-440d-91e2-e7b928a95757
+		summarizeBy: none
+		sourceColumn: ADR_Hotels
+
+	column ALOS_Apartments
+		dataType: double
+		isHidden
+		lineageTag: 85742a9b-e8c6-4da0-bab8-46ad5750c988
+		summarizeBy: none
+		sourceColumn: ALOS_Apartments
+
+	column ALOS_Hotels
+		dataType: double
+		isHidden
+		lineageTag: 35841071-4805-474b-9752-614cd0634bc6
+		summarizeBy: none
+		sourceColumn: ALOS_Hotels
+
+	column Saudi_Employees
+		dataType: double
+		isHidden
+		lineageTag: 80d55fa3-dbcf-4995-8dc3-d16aefeaf7ff
+		summarizeBy: none
+		sourceColumn: Saudi_Employees
+
+	column NonSaudi_Employees
+		dataType: double
+		isHidden
+		lineageTag: 8a341763-28e6-4bf9-9dbd-0fc42a90d1f7
+		summarizeBy: none
+		sourceColumn: NonSaudi_Employees
+
+	column Total_Employees
+		dataType: double
+		isHidden
+		lineageTag: b3955986-beb4-4af5-b335-9f82c4c81c05
+		summarizeBy: none
+		sourceColumn: Total_Employees
+
+	column Female_Share
+		dataType: double
+		isHidden
+		lineageTag: 1ffacca7-4139-493d-a9f7-aef5a93d910a
+		summarizeBy: none
+		sourceColumn: Female_Share
+
+	column Tourism_Establishments
+		dataType: int64
+		isHidden
+		formatString: #,0
+		lineageTag: 553c9ccd-d2a7-418b-bd09-952f73c5aa14
+		summarizeBy: none
+		sourceColumn: Tourism_Establishments
+
+	column Quarter_Key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a02b15ff-e0ac-4c7d-9a28-84023bd2eb61
+		summarizeBy: none
+		sourceColumn: Quarter_Key
+
+	partition Fact_Quarterly = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Fact_Quarterly.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"Apartments_Count", type number}, {"Hotels_Count", type number}, {"Licensed_Facilities", type number}, {"Occupancy_Apartments", type number}, {"Occupancy_Hotels", type number}, {"ADR_Apartments", type number}, {"ADR_Hotels", type number}, {"ALOS_Apartments", type number}, {"ALOS_Hotels", type number}, {"Saudi_Employees", type number}, {"NonSaudi_Employees", type number}, {"Total_Employees", type number}, {"Female_Share", type number}, {"Tourism_Establishments", Int64.Type}, {"Quarter_Key", Int64.Type}}, "en-US")
+				in
+				    Typed
+

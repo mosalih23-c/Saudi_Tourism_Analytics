@@ -1,0 +1,27 @@
+table Dim_Facility_Type
+	lineageTag: 910afb25-b508-412e-9ae6-75b7a719d66c
+
+	column Facility_Type
+		dataType: string
+		lineageTag: ab3af8cf-a225-47c3-82d2-4b4a0adf8e49
+		summarizeBy: none
+		sourceColumn: Facility_Type
+		sortByColumn: Facility_Order
+
+	column Facility_Order
+		dataType: int64
+		formatString: 0
+		lineageTag: a7866daf-246c-4221-b082-8c2e85b9a269
+		summarizeBy: none
+		sourceColumn: Facility_Order
+
+	partition Dim_Facility_Type = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Dim_Facility_Type.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"Facility_Type", type text}, {"Facility_Order", Int64.Type}}, "en-US")
+				in
+				    Typed
+

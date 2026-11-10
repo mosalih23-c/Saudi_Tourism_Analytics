@@ -1,0 +1,59 @@
+table Dim_Quarter
+	lineageTag: aec18c73-9344-47a7-b0a4-8fd3929ea21a
+
+	column Quarter_Key
+		dataType: int64
+		formatString: 0
+		lineageTag: a45e7821-2f37-4efe-975b-377b4c0ac1ca
+		summarizeBy: none
+		sourceColumn: Quarter_Key
+
+	column Quarter_Label
+		dataType: string
+		lineageTag: 88e70473-91dd-46b6-9e08-7b9e1ef0a361
+		summarizeBy: none
+		sourceColumn: Quarter_Label
+		sortByColumn: Quarter_Key
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 21b823da-ce0c-4651-86ce-26357538e4cb
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter_Num
+		dataType: int64
+		formatString: 0
+		lineageTag: 17647029-05c1-4400-8550-9f66aa50a980
+		summarizeBy: sum
+		sourceColumn: Quarter_Num
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter_Start_Date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: a576f970-3fee-4b7d-b75e-a48043d7f98b
+		summarizeBy: none
+		sourceColumn: Quarter_Start_Date
+
+		variation Variation
+			isDefault
+			relationship: 76afab37-a53a-4c15-8bd0-98c345558fa2
+			defaultHierarchy: LocalDateTable_cb23cf6b-3c62-471e-a7fb-80538108e3ce.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Dim_Quarter = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Dim_Quarter.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"Quarter_Key", Int64.Type}, {"Quarter_Label", type text}, {"Year", Int64.Type}, {"Quarter_Num", Int64.Type}, {"Quarter_Start_Date", type date}}, "en-US")
+				in
+				    Typed
+

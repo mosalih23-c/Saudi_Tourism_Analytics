@@ -1,0 +1,19 @@
+table Dim_Region
+	lineageTag: 585b3ef2-07d2-45c1-9277-f3e84c18d72c
+
+	column Region
+		dataType: string
+		lineageTag: eab3c362-609c-4d03-b406-d78f5e3c55f0
+		summarizeBy: none
+		sourceColumn: Region
+
+	partition Dim_Region = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Dim_Region.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"Region", type text}}, "en-US")
+				in
+				    Typed
+

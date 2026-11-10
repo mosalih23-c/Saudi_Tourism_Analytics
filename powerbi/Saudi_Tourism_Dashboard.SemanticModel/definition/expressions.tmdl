@@ -1,0 +1,5 @@
+expression DataFolder = "D:\Saudi_Tourism_Analytics\data\processed\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 57dac60f-4fa8-428e-82bc-af914745edc5
+
+	annotation PBI_ResultType = Text
+

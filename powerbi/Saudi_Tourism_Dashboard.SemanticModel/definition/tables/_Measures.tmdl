@@ -1,0 +1,252 @@
+table _Measures
+	lineageTag: 89072351-bd27-4475-a193-a9bdb791ffe3
+
+	measure 'Total Establishments' = SWITCH(TRUE(), ISCROSSFILTERED(Dim_Region[Region]) && ISCROSSFILTERED(Dim_Activity[Activity]), BLANK(), ISCROSSFILTERED(Dim_Region[Region]), SUM(Fact_Establishments_Region[Establishments]), SUM(Fact_Establishments_Activity[Establishments]))
+		formatString: #,0
+		displayFolder: 1 Establishments
+		lineageTag: ba975bb9-34e1-41d7-9ef9-8820d97762bc
+
+	measure 'Establishments Share %' = DIVIDE([Total Establishments], CALCULATE([Total Establishments], REMOVEFILTERS(Dim_Activity), REMOVEFILTERS(Dim_Region)))
+		formatString: 0.0%
+		displayFolder: 1 Establishments
+		lineageTag: 90e0e270-ec61-45bd-8bf3-372fa7650197
+
+	measure 'Total Employees' = SWITCH(TRUE(), ISCROSSFILTERED(Dim_Region[Region]) && ISCROSSFILTERED(Dim_Activity[Activity]), BLANK(), ISCROSSFILTERED(Dim_Region[Region]), CALCULATE(SUM(Fact_Employment_Region[Employees])), CALCULATE(SUM(Fact_Employment_Activity[Employees])))
+		formatString: #,0
+		displayFolder: 2 Employment
+		lineageTag: 98163448-059f-4da8-a21d-2c112839f575
+
+	measure 'Male Employees' = SWITCH(TRUE(), ISCROSSFILTERED(Dim_Region[Region]) && ISCROSSFILTERED(Dim_Activity[Activity]), BLANK(), ISCROSSFILTERED(Dim_Region[Region]), CALCULATE(SUM(Fact_Employment_Region[Employees]), Fact_Employment_Region[Gender] = "Male"), CALCULATE(SUM(Fact_Employment_Activity[Employees]), Fact_Employment_Activity[Gender] = "Male"))
+		formatString: #,0
+		displayFolder: 2 Employment
+		lineageTag: e2d07eae-e7d2-45e4-8b4e-e0ed844ecf8a
+
+	measure 'Female Employees' = SWITCH(TRUE(), ISCROSSFILTERED(Dim_Region[Region]) && ISCROSSFILTERED(Dim_Activity[Activity]), BLANK(), ISCROSSFILTERED(Dim_Region[Region]), CALCULATE(SUM(Fact_Employment_Region[Employees]), Fact_Employment_Region[Gender] = "Female"), CALCULATE(SUM(Fact_Employment_Activity[Employees]), Fact_Employment_Activity[Gender] = "Female"))
+		formatString: #,0
+		displayFolder: 2 Employment
+		lineageTag: 3e1f8bbc-9ac8-4004-8591-4a621188d270
+
+	measure 'Saudi Employees' = SWITCH(TRUE(), ISCROSSFILTERED(Dim_Region[Region]) && ISCROSSFILTERED(Dim_Activity[Activity]), BLANK(), ISCROSSFILTERED(Dim_Region[Region]), CALCULATE(SUM(Fact_Employment_Region[Employees]), Fact_Employment_Region[Nationality] = "Saudi"), CALCULATE(SUM(Fact_Employment_Activity[Employees]), Fact_Employment_Activity[Nationality] = "Saudi"))
+		formatString: #,0
+		displayFolder: 2 Employment
+		lineageTag: 58d9cc14-4342-41a1-8fbe-35891057dc76
+
+	measure 'Non-Saudi Employees' = SWITCH(TRUE(), ISCROSSFILTERED(Dim_Region[Region]) && ISCROSSFILTERED(Dim_Activity[Activity]), BLANK(), ISCROSSFILTERED(Dim_Region[Region]), CALCULATE(SUM(Fact_Employment_Region[Employees]), Fact_Employment_Region[Nationality] = "Non-Saudi"), CALCULATE(SUM(Fact_Employment_Activity[Employees]), Fact_Employment_Activity[Nationality] = "Non-Saudi"))
+		formatString: #,0
+		displayFolder: 2 Employment
+		lineageTag: 49868b83-f051-4793-a329-75d4b4997139
+
+	measure 'Female Share %' = DIVIDE([Female Employees], [Total Employees])
+		formatString: 0.0%
+		displayFolder: 2 Employment
+		lineageTag: 5c3b6e4b-051c-4741-a5d2-abc08cfc8810
+
+	measure 'Saudi Share %' = DIVIDE([Saudi Employees], [Total Employees])
+		formatString: 0.0%
+		displayFolder: 2 Employment
+		lineageTag: f6963cca-67d9-4d91-b172-b1609252aabd
+
+	measure 'Employees Share %' = DIVIDE([Total Employees], CALCULATE([Total Employees], REMOVEFILTERS(Dim_Activity), REMOVEFILTERS(Dim_Region)))
+		formatString: 0.0%
+		displayFolder: 2 Employment
+		lineageTag: bdd9bacb-8932-4b36-af89-f4d588abc1b1
+
+	measure 'Employees per Establishment' = DIVIDE([Total Employees], [Total Establishments])
+		formatString: 0.0
+		displayFolder: 2 Employment
+		lineageTag: 568fc575-bd6e-4576-880c-c8da98d7bb94
+
+	measure 'Licensed Facilities' = SUM(Fact_Regional_Hospitality[Facilities])
+		formatString: #,0
+		displayFolder: 3 Regional hospitality
+		lineageTag: c1f73532-eb79-469d-ab3d-7f9797fd54ed
+
+	measure 'Available Rooms' = SUM(Fact_Regional_Hospitality[Available_Rooms])
+		formatString: #,0
+		displayFolder: 3 Regional hospitality
+		lineageTag: 7711ba62-bfd7-46dc-a5dc-59c184431d04
+
+	measure 'Occupancy Rate' = DIVIDE(SUMX(Fact_Regional_Hospitality, Fact_Regional_Hospitality[Occupancy] * Fact_Regional_Hospitality[Available_Rooms]), SUM(Fact_Regional_Hospitality[Available_Rooms]))
+		formatString: 0.0%
+		displayFolder: 3 Regional hospitality
+		lineageTag: bb213d9d-5e3f-40fb-930b-b96e18df7e64
+
+	measure 'ADR (SAR)' = DIVIDE(SUMX(Fact_Regional_Hospitality, Fact_Regional_Hospitality[ADR] * Fact_Regional_Hospitality[Occupancy] * Fact_Regional_Hospitality[Available_Rooms]), SUMX(Fact_Regional_Hospitality, Fact_Regional_Hospitality[Occupancy] * Fact_Regional_Hospitality[Available_Rooms]))
+		formatString: #,0
+		displayFolder: 3 Regional hospitality
+		lineageTag: e0cf5703-eeb6-436d-a950-a8567d88e6ea
+
+	measure 'RevPAR (SAR)' = [Occupancy Rate] * [ADR (SAR)]
+		formatString: #,0
+		displayFolder: 3 Regional hospitality
+		lineageTag: 1d236cd0-2a1a-4915-87b1-a9bce905529b
+
+	measure 'Length of Stay (nights)' = AVERAGE(Fact_Regional_Hospitality[ALOS])
+		formatString: 0.00
+		displayFolder: 3 Regional hospitality
+		lineageTag: 48611f7b-3cbd-407e-b1b5-77074c880a85
+
+	measure 'Average Hotel Occupancy Rate' = CALCULATE([Occupancy Rate], Dim_Facility_Type[Facility_Type] = "Hotels")
+		formatString: 0.0%
+		displayFolder: 3 Regional hospitality
+		lineageTag: 1a1c824e-1135-4570-a510-ce43eee011b7
+
+	measure 'Average Apartment Occupancy Rate' = CALCULATE([Occupancy Rate], Dim_Facility_Type[Facility_Type] = "Serviced apartments & other")
+		formatString: 0.0%
+		displayFolder: 3 Regional hospitality
+		lineageTag: 0a455b93-611e-4d5e-8086-4571d0d9913b
+
+	measure 'Average ADR' = CALCULATE([ADR (SAR)], Dim_Facility_Type[Facility_Type] = "Hotels")
+		formatString: #,0
+		displayFolder: 3 Regional hospitality
+		lineageTag: 6c2a2af3-06d1-4970-bb9d-dfa9c0c25de5
+
+	measure 'Average Apartment ADR' = CALCULATE([ADR (SAR)], Dim_Facility_Type[Facility_Type] = "Serviced apartments & other")
+		formatString: #,0
+		displayFolder: 3 Regional hospitality
+		lineageTag: abc9837a-0b16-46b7-8eb8-075494602a5c
+
+	measure 'Hotel RevPAR (SAR)' = CALCULATE([RevPAR (SAR)], Dim_Facility_Type[Facility_Type] = "Hotels")
+		formatString: #,0
+		displayFolder: 3 Regional hospitality
+		lineageTag: 54cb119f-78df-4ac1-b41e-d68fb253f13c
+
+	measure 'Average Length of Stay' = IF(ISCROSSFILTERED(Dim_Region[Region]), CALCULATE([Length of Stay (nights)], Dim_Facility_Type[Facility_Type] = "Hotels"), CALCULATE(MAX(Fact_Quarterly[ALOS_Hotels]), Fact_Quarterly[Quarter_Key] = 20262))
+		formatString: 0.00
+		displayFolder: 3 Regional hospitality
+		lineageTag: 8eaa12c6-757f-4026-8c3c-0a70dd27fc0d
+
+	measure 'Hotel Occupancy Q2 2025' = CALCULATE(DIVIDE(SUMX(Fact_Regional_Hospitality, Fact_Regional_Hospitality[Occupancy_Q2_2025] * Fact_Regional_Hospitality[Available_Rooms]), SUM(Fact_Regional_Hospitality[Available_Rooms])), Dim_Facility_Type[Facility_Type] = "Hotels")
+		formatString: 0.0%
+		displayFolder: 3 Regional hospitality
+		lineageTag: 2cc84acd-af7a-46c0-8ec2-a92b61d37469
+
+	measure 'Hotel Occupancy Change (pts)' = ([Average Hotel Occupancy Rate] - [Hotel Occupancy Q2 2025]) * 100
+		formatString: +0.0;-0.0;0.0
+		displayFolder: 3 Regional hospitality
+		lineageTag: 0742aa3f-c7af-4539-b374-fdeb748f2396
+
+	measure 'Hotel ADR Q2 2025' = CALCULATE(DIVIDE(SUMX(Fact_Regional_Hospitality, Fact_Regional_Hospitality[ADR_Q2_2025] * Fact_Regional_Hospitality[Occupancy_Q2_2025] * Fact_Regional_Hospitality[Available_Rooms]), SUMX(Fact_Regional_Hospitality, Fact_Regional_Hospitality[Occupancy_Q2_2025] * Fact_Regional_Hospitality[Available_Rooms])), Dim_Facility_Type[Facility_Type] = "Hotels")
+		formatString: #,0
+		displayFolder: 3 Regional hospitality
+		lineageTag: cfeafa4e-d502-4ca3-ac90-d02185c32c1e
+
+	measure 'Hotel ADR Change %' = DIVIDE([Average ADR] - [Hotel ADR Q2 2025], [Hotel ADR Q2 2025])
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 3 Regional hospitality
+		lineageTag: a5935bcc-5cb2-429a-8d3b-9b7403828b99
+
+	measure 'City Occupancy Rate' = IF(ISCROSSFILTERED(Dim_Facility_Type[Facility_Type]), AVERAGE(Fact_City_Hospitality[Occupancy]), CALCULATE(AVERAGE(Fact_City_Hospitality[Occupancy]), Dim_Facility_Type[Facility_Type] = "All facilities"))
+		formatString: 0.0%
+		displayFolder: 4 City
+		lineageTag: 202d6a97-3b75-48d3-a096-4e77a48f3dd4
+
+	measure 'City ADR (SAR)' = IF(ISCROSSFILTERED(Dim_Facility_Type[Facility_Type]), AVERAGE(Fact_City_Hospitality[ADR]), CALCULATE(AVERAGE(Fact_City_Hospitality[ADR]), Dim_Facility_Type[Facility_Type] = "All facilities"))
+		formatString: #,0
+		displayFolder: 4 City
+		lineageTag: d5c99d3f-fbfc-42e7-ae45-7c448eff0d0a
+
+	measure 'City Length of Stay (nights)' = IF(ISCROSSFILTERED(Dim_Facility_Type[Facility_Type]), AVERAGE(Fact_City_Hospitality[ALOS]), CALCULATE(AVERAGE(Fact_City_Hospitality[ALOS]), Dim_Facility_Type[Facility_Type] = "All facilities"))
+		formatString: 0.00
+		displayFolder: 4 City
+		lineageTag: d2a22d27-d9a0-4c8c-bd52-9283ee082e78
+
+	measure 'Q Tourism Establishments' = SUM(Fact_Quarterly[Tourism_Establishments])
+		formatString: #,0
+		displayFolder: 5 Quarterly
+		lineageTag: 3f45d9a1-e610-44cf-b5ae-079c268e1e81
+
+	measure 'Q Licensed Facilities' = SUM(Fact_Quarterly[Licensed_Facilities])
+		formatString: #,0
+		displayFolder: 5 Quarterly
+		lineageTag: c897befa-2e8f-46f3-9d92-e8ce53c5b8bd
+
+	measure 'Q Hotel Occupancy' = AVERAGE(Fact_Quarterly[Occupancy_Hotels])
+		formatString: 0.0%
+		displayFolder: 5 Quarterly
+		lineageTag: bbfe9af5-03a9-4c74-980d-0daf6d78dbaf
+
+	measure 'Q Apartment Occupancy' = AVERAGE(Fact_Quarterly[Occupancy_Apartments])
+		formatString: 0.0%
+		displayFolder: 5 Quarterly
+		lineageTag: 69fe8e72-628a-40ba-b39b-3caa673730c8
+
+	measure 'Q Hotel ADR (SAR)' = AVERAGE(Fact_Quarterly[ADR_Hotels])
+		formatString: #,0
+		displayFolder: 5 Quarterly
+		lineageTag: 44f343d0-237f-4810-b792-dda59d9fffe0
+
+	measure 'Q Apartment ADR (SAR)' = AVERAGE(Fact_Quarterly[ADR_Apartments])
+		formatString: #,0
+		displayFolder: 5 Quarterly
+		lineageTag: 3d6a28ff-feff-4e67-98ab-c0cde2b23ea1
+
+	measure 'Q Hotel Length of Stay' = AVERAGE(Fact_Quarterly[ALOS_Hotels])
+		formatString: 0.00
+		displayFolder: 5 Quarterly
+		lineageTag: 1a44af79-af39-4ae2-b1a9-16844a460ab5
+
+	measure 'Q Apartment Length of Stay' = AVERAGE(Fact_Quarterly[ALOS_Apartments])
+		formatString: 0.00
+		displayFolder: 5 Quarterly
+		lineageTag: be417c9c-7df9-4ac9-92f1-8085baf713c7
+
+	measure 'Q Total Employees' = SUM(Fact_Quarterly[Total_Employees])
+		formatString: #,0
+		displayFolder: 5 Quarterly
+		lineageTag: c1d3d5bd-79a1-4b58-b337-92f95f089778
+
+	measure 'Q Saudi Employees' = SUM(Fact_Quarterly[Saudi_Employees])
+		formatString: #,0
+		displayFolder: 5 Quarterly
+		lineageTag: dd51d763-b1f5-4fdd-9e97-d0718a93e9d1
+
+	measure 'Q Non-Saudi Employees' = SUM(Fact_Quarterly[NonSaudi_Employees])
+		formatString: #,0
+		displayFolder: 5 Quarterly
+		lineageTag: 018343b8-cbc8-42e5-bca0-e17adedcb77e
+
+	measure 'Establishments YoY %' = VAR k = MAX(Dim_Quarter[Quarter_Key]) VAR cur = CALCULATE(SUM(Fact_Quarterly[Tourism_Establishments]), Dim_Quarter[Quarter_Key] = k) VAR prev = CALCULATE(SUM(Fact_Quarterly[Tourism_Establishments]), ALL(Dim_Quarter), Dim_Quarter[Quarter_Key] = k - 10) RETURN IF(NOT ISBLANK(prev) && NOT ISBLANK(cur), DIVIDE(cur - prev, prev))
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 5 Quarterly
+		lineageTag: d55efbe1-5d5d-466e-a3ba-89e9ad0b7acc
+
+	measure 'Employees YoY %' = VAR k = MAX(Dim_Quarter[Quarter_Key]) VAR cur = CALCULATE(SUM(Fact_Quarterly[Total_Employees]), Dim_Quarter[Quarter_Key] = k) VAR prev = CALCULATE(SUM(Fact_Quarterly[Total_Employees]), ALL(Dim_Quarter), Dim_Quarter[Quarter_Key] = k - 10) RETURN IF(NOT ISBLANK(prev) && NOT ISBLANK(cur), DIVIDE(cur - prev, prev))
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 5 Quarterly
+		lineageTag: fab85e67-8bbb-4a38-a019-8c591f3867e5
+
+	measure 'Licensed Facilities YoY %' = VAR k = MAX(Dim_Quarter[Quarter_Key]) VAR cur = CALCULATE(SUM(Fact_Quarterly[Licensed_Facilities]), Dim_Quarter[Quarter_Key] = k) VAR prev = CALCULATE(SUM(Fact_Quarterly[Licensed_Facilities]), ALL(Dim_Quarter), Dim_Quarter[Quarter_Key] = k - 10) RETURN IF(NOT ISBLANK(prev) && NOT ISBLANK(cur), DIVIDE(cur - prev, prev))
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 5 Quarterly
+		lineageTag: 8dd265fe-34bd-4f62-ad67-7ee7701bc18b
+
+	measure 'Latest Hotel Occupancy (published)' = VAR k = MAX(Dim_Quarter[Quarter_Key]) RETURN CALCULATE(MAX(Fact_Quarterly[Occupancy_Hotels]), Dim_Quarter[Quarter_Key] = k)
+		formatString: 0.0%
+		displayFolder: 5 Quarterly
+		lineageTag: e83088ce-d72c-4039-9b48-0816ef1a523a
+
+	measure 'Latest Hotel ADR (published)' = VAR k = MAX(Dim_Quarter[Quarter_Key]) RETURN CALCULATE(MAX(Fact_Quarterly[ADR_Hotels]), Dim_Quarter[Quarter_Key] = k)
+		formatString: #,0
+		displayFolder: 5 Quarterly
+		lineageTag: f5467975-7692-4b60-9eae-f025b28df856
+
+	measure 'Occupancy Change Color' = IF([Hotel Occupancy Change (pts)] >= 0, "#0F7B5F", "#B5475B")
+		displayFolder: 9 Formatting
+		lineageTag: fae192e0-5b8b-4895-b06a-0875ac948b9d
+
+	column Dummy
+		dataType: int64
+		isHidden
+		lineageTag: b8639b89-0aaa-4783-9405-09b76155256a
+		summarizeBy: none
+		sourceColumn: Dummy
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = #table(type table [Dummy = Int64.Type], {{0}})
+				in
+				    Source
+

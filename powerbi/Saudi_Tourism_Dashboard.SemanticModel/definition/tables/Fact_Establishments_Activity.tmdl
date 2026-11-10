@@ -1,0 +1,28 @@
+table Fact_Establishments_Activity
+	lineageTag: 061a8f15-4072-4013-b014-459c68b222f5
+
+	column Activity
+		dataType: string
+		isHidden
+		lineageTag: 69207256-a0d7-403a-9311-51681fea7f48
+		summarizeBy: none
+		sourceColumn: Activity
+
+	column Establishments
+		dataType: int64
+		isHidden
+		formatString: #,0
+		lineageTag: a847f433-fd9c-4a05-b8e8-991980a051f6
+		summarizeBy: none
+		sourceColumn: Establishments
+
+	partition Fact_Establishments_Activity = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Fact_Establishments_Activity.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"Activity", type text}, {"Establishments", Int64.Type}}, "en-US")
+				in
+				    Typed
+

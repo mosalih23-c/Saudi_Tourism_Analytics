@@ -1,0 +1,32 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["_Measures","Dim_Region","Dim_City","Dim_Activity","Dim_Quarter","Dim_Facility_Type","Fact_Quarterly","Fact_Regional_Hospitality","Fact_Regional_Monthly","Fact_City_Hospitality","Fact_City_Monthly","Fact_Employment_Activity","Fact_Employment_Region","Fact_Establishments_Activity","Fact_Establishments_Region","DataFolder"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table _Measures
+ref table Dim_Region
+ref table Dim_City
+ref table Dim_Activity
+ref table Dim_Quarter
+ref table Dim_Facility_Type
+ref table Fact_Quarterly
+ref table Fact_Regional_Hospitality
+ref table Fact_Regional_Monthly
+ref table Fact_City_Hospitality
+ref table Fact_City_Monthly
+ref table Fact_Employment_Activity
+ref table Fact_Employment_Region
+ref table Fact_Establishments_Activity
+ref table Fact_Establishments_Region
+ref table DateTableTemplate_c0bafdf6-9b5c-4a9d-86a8-3ee7c71538ca
+ref table LocalDateTable_cb23cf6b-3c62-471e-a7fb-80538108e3ce
+

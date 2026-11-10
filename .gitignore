@@ -1,0 +1,15 @@
+# Duplicate of data/raw/Saudi_Tourism_Analytics_Cleaned.xlsx
+/Saudi_Tourism_Analytics_Cleaned.xlsx
+
+# Python / Jupyter
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+
+# Power BI local caches
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+
+# OS
+Thumbs.db
+desktop.ini

@@ -1,0 +1,32 @@
+table Dim_Activity
+	lineageTag: 624fb622-81f5-4d22-84dd-a94c753adf6d
+
+	column Activity
+		dataType: string
+		lineageTag: ae64ed56-f056-48b4-8405-6c0c9eb9669a
+		summarizeBy: none
+		sourceColumn: Activity
+
+	column Activity_Short
+		dataType: string
+		lineageTag: 1eb43337-e1b0-4f62-ba61-cae6f433fbd5
+		summarizeBy: none
+		sourceColumn: Activity_Short
+
+	column Activity_Order
+		dataType: int64
+		formatString: 0
+		lineageTag: 0993dbdd-ae0d-42ff-8ead-e0fb7d247307
+		summarizeBy: none
+		sourceColumn: Activity_Order
+
+	partition Dim_Activity = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Dim_Activity.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"Activity", type text}, {"Activity_Short", type text}, {"Activity_Order", Int64.Type}}, "en-US")
+				in
+				    Typed
+

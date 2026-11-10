@@ -1,0 +1,48 @@
+table Fact_City_Hospitality
+	lineageTag: 9061842d-2ecf-41f3-b944-2bbdaba11a7d
+
+	column City
+		dataType: string
+		isHidden
+		lineageTag: 6ed51c02-73a7-483f-aa38-e8bb90c69f18
+		summarizeBy: none
+		sourceColumn: City
+
+	column Facility_Type
+		dataType: string
+		isHidden
+		lineageTag: 596d8ba7-0a3a-4d43-8db4-cd289eb5ffd7
+		summarizeBy: none
+		sourceColumn: Facility_Type
+
+	column Occupancy
+		dataType: double
+		isHidden
+		lineageTag: 9d20f535-697c-4bf5-a347-6db103d745bb
+		summarizeBy: none
+		sourceColumn: Occupancy
+
+	column ADR
+		dataType: double
+		isHidden
+		lineageTag: 578b2983-c70d-44fb-b6da-5781ae528974
+		summarizeBy: none
+		sourceColumn: ADR
+
+	column ALOS
+		dataType: double
+		isHidden
+		lineageTag: 828d5386-34c2-4ef6-9815-8a2699f666b6
+		summarizeBy: none
+		sourceColumn: ALOS
+
+	partition Fact_City_Hospitality = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Fact_City_Hospitality.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"City", type text}, {"Facility_Type", type text}, {"Occupancy", type number}, {"ADR", type number}, {"ALOS", type number}}, "en-US")
+				in
+				    Typed
+

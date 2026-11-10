@@ -1,0 +1,85 @@
+table Fact_Regional_Hospitality
+	lineageTag: 7ac83693-6d34-4aa5-b98b-8174a47defa2
+
+	column Region
+		dataType: string
+		isHidden
+		lineageTag: 915528a2-e6ce-4c57-91f9-ba1a20a1fff2
+		summarizeBy: none
+		sourceColumn: Region
+
+	column Facility_Type
+		dataType: string
+		isHidden
+		lineageTag: 117788bd-dbc2-4c5b-b63d-3fb5ccaf24ba
+		summarizeBy: none
+		sourceColumn: Facility_Type
+
+	column Facilities
+		dataType: int64
+		isHidden
+		formatString: #,0
+		lineageTag: fb902882-f052-4830-a3b4-f969b0937349
+		summarizeBy: none
+		sourceColumn: Facilities
+
+	column Available_Rooms
+		dataType: int64
+		isHidden
+		formatString: #,0
+		lineageTag: fe9a9a23-94b7-453e-9735-ac03472f3d2c
+		summarizeBy: none
+		sourceColumn: Available_Rooms
+
+	column Occupancy
+		dataType: double
+		isHidden
+		lineageTag: 996c635d-b884-4e75-9f41-f00fad81f3e7
+		summarizeBy: none
+		sourceColumn: Occupancy
+
+	column ADR
+		dataType: double
+		isHidden
+		lineageTag: 2bb1198f-edcc-42dd-998d-2204581e13de
+		summarizeBy: none
+		sourceColumn: ADR
+
+	column ALOS
+		dataType: double
+		isHidden
+		lineageTag: 15a9b6d0-a9e6-4fad-a5b2-0b5871c76e79
+		summarizeBy: none
+		sourceColumn: ALOS
+
+	column Occupancy_Q2_2025
+		dataType: double
+		isHidden
+		lineageTag: 09df6c7d-b1fe-4f5e-9f9a-b9921580236a
+		summarizeBy: none
+		sourceColumn: Occupancy_Q2_2025
+
+	column ADR_Q2_2025
+		dataType: double
+		isHidden
+		lineageTag: 6aebca03-ca85-4a44-8dec-c2e49e1fafee
+		summarizeBy: none
+		sourceColumn: ADR_Q2_2025
+
+	column ALOS_Q2_2025
+		dataType: double
+		isHidden
+		lineageTag: 47821f8a-b890-4486-ae17-a5003b7d241c
+		summarizeBy: none
+		sourceColumn: ALOS_Q2_2025
+
+	partition Fact_Regional_Hospitality = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Fact_Regional_Hospitality.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"Region", type text}, {"Facility_Type", type text}, {"Facilities", Int64.Type}, {"Available_Rooms", Int64.Type}, {"Occupancy", type number}, {"ADR", type number}, {"ALOS", type number}, {"Occupancy_Q2_2025", type number}, {"ADR_Q2_2025", type number}, {"ALOS_Q2_2025", type number}}, "en-US")
+				in
+				    Typed
+

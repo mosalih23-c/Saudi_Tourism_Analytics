@@ -1,0 +1,187 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "p1overviewv11",
+  "position": {
+    "x": 700,
+    "y": 534,
+    "z": 10000,
+    "width": 548,
+    "height": 328,
+    "tabOrder": 10000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Key findings",
+                    "textStyle": {
+                      "fontSize": "13pt",
+                      "fontWeight": "bold",
+                      "color": "#0B4D3B"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "\u2022 Establishments grew 63.7% since Q1 2022 to 179,507 (+8.7% year-on-year).",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#1F2A24"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "\u2022 Food & beverage is 64.5% of establishments and 61.2% of employees.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#1F2A24"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "\u2022 Hotel occupancy fell to 51.0% from 53.2% a year earlier; 9 of 13 regions declined.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#1F2A24"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "\u2022 Makkah holds 63% of available rooms, so national KPIs mostly reflect Makkah.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#1F2A24"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "\u2022 Riyadh hotel ADR dropped 26.8% and occupancy 9.4 pts versus Q2 2025.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#1F2A24"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "\u2022 Hotel ADR peaks every Q2 (Hajj), but the peak fell from SAR 756 (2023) to SAR 563 (2026).",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#1F2A24"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "\u2022 Saudis are 24.1% of the 1.07M workforce; women are 46.6% of Saudi employees.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#1F2A24"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E8E2D4'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

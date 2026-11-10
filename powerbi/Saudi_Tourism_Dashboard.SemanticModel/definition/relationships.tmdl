@@ -1,0 +1,57 @@
+relationship Fact_Quarterly_Quarter_Key
+	fromColumn: Fact_Quarterly.Quarter_Key
+	toColumn: Dim_Quarter.Quarter_Key
+
+relationship Fact_Regional_Hospitality_Region
+	fromColumn: Fact_Regional_Hospitality.Region
+	toColumn: Dim_Region.Region
+
+relationship Fact_Regional_Hospitality_Facility_Type
+	fromColumn: Fact_Regional_Hospitality.Facility_Type
+	toColumn: Dim_Facility_Type.Facility_Type
+
+relationship Fact_Regional_Monthly_Region
+	fromColumn: Fact_Regional_Monthly.Region
+	toColumn: Dim_Region.Region
+
+relationship Fact_Regional_Monthly_Facility_Type
+	fromColumn: Fact_Regional_Monthly.Facility_Type
+	toColumn: Dim_Facility_Type.Facility_Type
+
+relationship Fact_City_Hospitality_City
+	fromColumn: Fact_City_Hospitality.City
+	toColumn: Dim_City.City
+
+relationship Fact_City_Hospitality_Facility_Type
+	fromColumn: Fact_City_Hospitality.Facility_Type
+	toColumn: Dim_Facility_Type.Facility_Type
+
+relationship Fact_City_Monthly_City
+	fromColumn: Fact_City_Monthly.City
+	toColumn: Dim_City.City
+
+relationship Fact_City_Monthly_Facility_Type
+	fromColumn: Fact_City_Monthly.Facility_Type
+	toColumn: Dim_Facility_Type.Facility_Type
+
+relationship Fact_Employment_Activity_Activity
+	fromColumn: Fact_Employment_Activity.Activity
+	toColumn: Dim_Activity.Activity
+
+relationship Fact_Employment_Region_Region
+	fromColumn: Fact_Employment_Region.Region
+	toColumn: Dim_Region.Region
+
+relationship Fact_Establishments_Activity_Activity
+	fromColumn: Fact_Establishments_Activity.Activity
+	toColumn: Dim_Activity.Activity
+
+relationship Fact_Establishments_Region_Region
+	fromColumn: Fact_Establishments_Region.Region
+	toColumn: Dim_Region.Region
+
+relationship 76afab37-a53a-4c15-8bd0-98c345558fa2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Dim_Quarter.Quarter_Start_Date
+	toColumn: LocalDateTable_cb23cf6b-3c62-471e-a7fb-80538108e3ce.Date
+

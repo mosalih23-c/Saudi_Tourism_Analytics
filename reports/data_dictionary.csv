@@ -1,0 +1,21 @@
+Dataset,Column,Unit,Description
+Quarterly_Trends,Quarter,text,"Quarter label, e.g. ""Q2 of 2026"" (key)"
+Quarterly_Trends,1_1_*,count,Licensed hotels / serviced apartments & other facilities / total (from Q1 2024)
+Quarterly_Trends,1_2_*,rate 0-1,Occupancy rate – hotels and serviced apartments (from Q1 2023)
+Quarterly_Trends,1_3_*,SAR,Average daily rate – hotels and serviced apartments
+Quarterly_Trends,1_4_*,nights,Average length of stay – hotels and serviced apartments
+Quarterly_Trends,1_5_*,count / share,"Saudi, non-Saudi and total employees; female share of employees"
+Quarterly_Trends,1_6_Number_of_tourism_etablishments,count,"Tourism establishments, all activities (from Q1 2022)"
+Regional_KPIs,Region,text,13 administrative regions (key)
+Regional_KPIs,2_1_* / 2_2_*,count,Licensed facilities and available rooms by facility type
+Regional_KPIs,2_3_* / 2_4_*,rate 0-1,"Occupancy: serviced apartments (2_3) / hotels (2_4), monthly + quarterly average"
+Regional_KPIs,2_9_* / 2_10_*,SAR,ADR: serviced apartments (2_9) / hotels (2_10)
+Regional_KPIs,2_15_* / 2_16_*,nights,Length of stay: serviced apartments (2_15) / hotels (2_16)
+Regional_KPIs,2_21 … 2_26,mixed,"Q2 2025 vs Q2 2026 comparison for occupancy, ADR, length of stay (apartments, hotels)"
+City_KPIs,City,text,"16 cities / city groups + ""Other"" (key)"
+City_KPIs,2_5–2_8,rate 0-1,"Occupancy: by type (2_5), all facilities monthly (2_6), apartments (2_7), hotels (2_8)"
+City_KPIs,2_11–2_14,SAR,"ADR, same layout"
+City_KPIs,2_17–2_20,nights,"Length of stay, same layout"
+Employment_Activity,Activity,text,12 tourism activities (key)
+Employment_*,Saudi_* / NonSaudi_* / Total_*,count,Employees by nationality and gender
+Establishments_*,Number_of_tourism_establishments,count,Establishments by activity or region

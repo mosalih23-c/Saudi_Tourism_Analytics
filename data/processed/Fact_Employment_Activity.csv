@@ -1,0 +1,49 @@
+Activity,Nationality,Gender,Employees
+Accommodation for visitors,Saudi,Male,36624
+Accommodation for visitors,Saudi,Female,24348
+Accommodation for visitors,Non-Saudi,Male,107980
+Accommodation for visitors,Non-Saudi,Female,3650
+Food and beverage serving activities,Saudi,Male,54302
+Food and beverage serving activities,Saudi,Female,61546
+Food and beverage serving activities,Non-Saudi,Male,529652
+Food and beverage serving activities,Non-Saudi,Female,9258
+Railway passenger transport,Saudi,Male,4170
+Railway passenger transport,Saudi,Female,577
+Railway passenger transport,Non-Saudi,Male,2191
+Railway passenger transport,Non-Saudi,Female,14
+Road passenger transport,Saudi,Male,4962
+Road passenger transport,Saudi,Female,3929
+Road passenger transport,Non-Saudi,Male,36568
+Road passenger transport,Non-Saudi,Female,332
+Water passenger transport,Saudi,Male,669
+Water passenger transport,Saudi,Female,608
+Water passenger transport,Non-Saudi,Male,2690
+Water passenger transport,Non-Saudi,Female,62
+Air passenger transport,Saudi,Male,6162
+Air passenger transport,Saudi,Female,798
+Air passenger transport,Non-Saudi,Male,2590
+Air passenger transport,Non-Saudi,Female,1371
+Transport equipment rental,Saudi,Male,6586
+Transport equipment rental,Saudi,Female,1560
+Transport equipment rental,Non-Saudi,Male,12206
+Transport equipment rental,Non-Saudi,Female,99
+Travel agencies and other reservation services activities,Saudi,Male,10322
+Travel agencies and other reservation services activities,Saudi,Female,4476
+Travel agencies and other reservation services activities,Non-Saudi,Male,14590
+Travel agencies and other reservation services activities,Non-Saudi,Female,738
+Cultural activities,Saudi,Male,1299
+Cultural activities,Saudi,Female,813
+Cultural activities,Non-Saudi,Male,1719
+Cultural activities,Non-Saudi,Female,155
+Sports and recreational activities,Saudi,Male,2685
+Sports and recreational activities,Saudi,Female,3618
+Sports and recreational activities,Non-Saudi,Male,15964
+Sports and recreational activities,Non-Saudi,Female,1104
+Other tourism characteristic services in the country,Saudi,Male,3440
+Other tourism characteristic services in the country,Saudi,Female,3732
+Other tourism characteristic services in the country,Non-Saudi,Male,11342
+Other tourism characteristic services in the country,Non-Saudi,Female,1016
+Retail trade of tourism characteristic goods in the country,Saudi,Male,6681
+Retail trade of tourism characteristic goods in the country,Saudi,Female,14136
+Retail trade of tourism characteristic goods in the country,Non-Saudi,Male,53013
+Retail trade of tourism characteristic goods in the country,Non-Saudi,Female,2773

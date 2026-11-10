@@ -1,0 +1,64 @@
+table Fact_City_Monthly
+	lineageTag: 25cd4471-fc96-435c-bc51-c138657a6a6f
+
+	column City
+		dataType: string
+		isHidden
+		lineageTag: 194c613a-3977-47bf-8f85-ec0866cd3360
+		summarizeBy: none
+		sourceColumn: City
+
+	column Facility_Type
+		dataType: string
+		isHidden
+		lineageTag: ed181a0f-e2c0-4700-a66f-379c692b36b8
+		summarizeBy: none
+		sourceColumn: Facility_Type
+
+	column Month
+		dataType: string
+		isHidden
+		lineageTag: e2370ce8-befd-4f92-8abe-730e2a02e6b2
+		summarizeBy: none
+		sourceColumn: Month
+		sortByColumn: Month_Num
+
+	column Month_Num
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b587285e-d5f6-4257-8aec-92f1158deeda
+		summarizeBy: none
+		sourceColumn: Month_Num
+
+	column Occupancy
+		dataType: double
+		isHidden
+		lineageTag: 55ec1215-1b1b-41c1-a548-26133710ec17
+		summarizeBy: none
+		sourceColumn: Occupancy
+
+	column ADR
+		dataType: double
+		isHidden
+		lineageTag: 80bb598a-beeb-4356-add2-9b55cefadeb5
+		summarizeBy: none
+		sourceColumn: ADR
+
+	column ALOS
+		dataType: double
+		isHidden
+		lineageTag: 88e72aba-9021-4be2-95d5-4ca9f728907d
+		summarizeBy: none
+		sourceColumn: ALOS
+
+	partition Fact_City_Monthly = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Fact_City_Monthly.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"City", type text}, {"Facility_Type", type text}, {"Month", type text}, {"Month_Num", Int64.Type}, {"Occupancy", type number}, {"ADR", type number}, {"ALOS", type number}}, "en-US")
+				in
+				    Typed
+

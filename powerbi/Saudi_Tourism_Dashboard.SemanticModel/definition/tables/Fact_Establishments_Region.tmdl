@@ -1,0 +1,28 @@
+table Fact_Establishments_Region
+	lineageTag: e0f2d267-5de9-4e8b-a002-8e7a0ecc7278
+
+	column Region
+		dataType: string
+		isHidden
+		lineageTag: 1d8f4a12-05ed-48c9-aae2-2420b85bc3d4
+		summarizeBy: none
+		sourceColumn: Region
+
+	column Establishments
+		dataType: int64
+		isHidden
+		formatString: #,0
+		lineageTag: c27d6d50-f7c7-491d-aa59-7b4cde6b912b
+		summarizeBy: none
+		sourceColumn: Establishments
+
+	partition Fact_Establishments_Region = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Fact_Establishments_Region.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"Region", type text}, {"Establishments", Int64.Type}}, "en-US")
+				in
+				    Typed
+

@@ -1,0 +1,217 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 3240.8056259091109,
+            "y": 290.76302013795078
+          },
+          "nodeIndex": "_Measures",
+          "nodeLineageTag": "89072351-bd27-4475-a193-a9bdb791ffe3",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2154.6287376743812,
+            "y": 305.56796923306257
+          },
+          "nodeIndex": "Dim_Activity",
+          "nodeLineageTag": "624fb622-81f5-4d22-84dd-a94c753adf6d",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1586.4439864937515,
+            "y": 46.011610550662681
+          },
+          "nodeIndex": "Dim_City",
+          "nodeLineageTag": "6cb99d02-633a-4051-8e67-d9a630f7296c",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1016.4504609441275,
+            "y": 248.18077548980187
+          },
+          "nodeIndex": "Dim_Facility_Type",
+          "nodeLineageTag": "910afb25-b508-412e-9ae6-75b7a719d66c",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3006.8056259091109,
+            "y": 290.76302013795078
+          },
+          "nodeIndex": "Dim_Quarter",
+          "nodeLineageTag": "aec18c73-9344-47a7-b0a4-8fd3929ea21a",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 334.25488906842065,
+            "y": 414.51596821651208
+          },
+          "nodeIndex": "Dim_Region",
+          "nodeLineageTag": "585b3ef2-07d2-45c1-9277-f3e84c18d72c",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1404.5568545688311,
+            "y": 248.17113324047824
+          },
+          "nodeIndex": "Fact_City_Hospitality",
+          "nodeLineageTag": "9061842d-2ecf-41f3-b944-2bbdaba11a7d",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1279.5701147810553,
+            "y": -50
+          },
+          "nodeIndex": "Fact_City_Monthly",
+          "nodeLineageTag": "25cd4471-fc96-435c-bc51-c138657a6a6f",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2438.8056259091109,
+            "y": 306.89296186549723
+          },
+          "nodeIndex": "Fact_Employment_Activity",
+          "nodeLineageTag": "ca6614f6-f4c2-4aa2-976f-d9a72d2bba48",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 447.86282580977195,
+            "y": 655.52604027590166
+          },
+          "nodeIndex": "Fact_Employment_Region",
+          "nodeLineageTag": "15647021-9b4c-400a-8b8f-d84eaa1c6e20",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1870.4439864937513,
+            "y": 298.63307841040432
+          },
+          "nodeIndex": "Fact_Establishments_Activity",
+          "nodeLineageTag": "061a8f15-4072-4013-b014-459c68b222f5",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 370.70537533135473
+          },
+          "nodeIndex": "Fact_Establishments_Region",
+          "nodeLineageTag": "e0f2d267-5de9-4e8b-a002-8e7a0ecc7278",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2722.8056259091109,
+            "y": 240.76302013795078
+          },
+          "nodeIndex": "Fact_Quarterly",
+          "nodeLineageTag": "ad5eb681-3e8d-49d6-a675-1136151245ea",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 732.257608360891,
+            "y": 414.49019097167945
+          },
+          "nodeIndex": "Fact_Regional_Hospitality",
+          "nodeLineageTag": "7ac83693-6d34-4aa5-b98b-8174a47defa2",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 590.37068298413715,
+            "y": 116.34374765045072
+          },
+          "nodeIndex": "Fact_Regional_Monthly",
+          "nodeLineageTag": "d10b61e7-6fb4-436f-a340-67621fc08f13",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

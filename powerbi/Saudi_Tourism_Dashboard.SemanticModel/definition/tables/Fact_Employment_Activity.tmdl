@@ -1,0 +1,42 @@
+table Fact_Employment_Activity
+	lineageTag: ca6614f6-f4c2-4aa2-976f-d9a72d2bba48
+
+	column Activity
+		dataType: string
+		isHidden
+		lineageTag: 52025f4b-9b8c-4514-a742-809322929849
+		summarizeBy: none
+		sourceColumn: Activity
+
+	column Nationality
+		dataType: string
+		isHidden
+		lineageTag: c22a5861-e5e9-4fa0-be37-6818982e1695
+		summarizeBy: none
+		sourceColumn: Nationality
+
+	column Gender
+		dataType: string
+		isHidden
+		lineageTag: 1dae0202-e1c1-4251-8556-a69610ff912d
+		summarizeBy: none
+		sourceColumn: Gender
+
+	column Employees
+		dataType: int64
+		isHidden
+		formatString: #,0
+		lineageTag: 34b659db-0d35-4cd2-a5b7-c304639e1e99
+		summarizeBy: none
+		sourceColumn: Employees
+
+	partition Fact_Employment_Activity = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Fact_Employment_Activity.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"Activity", type text}, {"Nationality", type text}, {"Gender", type text}, {"Employees", Int64.Type}}, "en-US")
+				in
+				    Typed
+

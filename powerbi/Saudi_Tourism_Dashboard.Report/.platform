@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Saudi_Tourism_Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "e13254ad-3a99-4702-9517-71b0c1e220a1"
+  }
+}

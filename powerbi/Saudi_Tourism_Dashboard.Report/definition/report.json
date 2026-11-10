@@ -1,0 +1,175 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "Fluent2-CY26SU10",
+      "reportVersionAtImport": {
+        "visual": "2.14.0",
+        "report": "3.4.0",
+        "page": "2.3.1"
+      },
+      "type": "SharedResources"
+    },
+    "customTheme": {
+      "name": "SaudiTourism.json",
+      "reportVersionAtImport": {
+        "visual": "2.14.0",
+        "report": "3.4.0",
+        "page": "2.3.1"
+      },
+      "type": "RegisteredResources"
+    }
+  },
+  "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "Fluent2-CY26SU10",
+          "path": "BaseThemes/Fluent2-CY26SU10.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "SaudiTourism.json",
+          "path": "SaudiTourism.json",
+          "type": "CustomTheme"
+        },
+        {
+          "name": "hd_briefcase.png",
+          "path": "hd_briefcase.png",
+          "type": "Image"
+        },
+        {
+          "name": "hd_landmark.png",
+          "path": "hd_landmark.png",
+          "type": "Image"
+        },
+        {
+          "name": "hd_layout_dashboard.png",
+          "path": "hd_layout_dashboard.png",
+          "type": "Image"
+        },
+        {
+          "name": "hd_map.png",
+          "path": "hd_map.png",
+          "type": "Image"
+        },
+        {
+          "name": "hd_trending_up.png",
+          "path": "hd_trending_up.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_banknote_amber.png",
+          "path": "ic_banknote_amber.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_banknote_green.png",
+          "path": "ic_banknote_green.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_bed_double_green.png",
+          "path": "ic_bed_double_green.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_bed_double_rose.png",
+          "path": "ic_bed_double_rose.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_building_2_blue.png",
+          "path": "ic_building_2_blue.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_coins_blue.png",
+          "path": "ic_coins_blue.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_flag_green.png",
+          "path": "ic_flag_green.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_info_blue.png",
+          "path": "ic_info_blue.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_key_round_rose.png",
+          "path": "ic_key_round_rose.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_lightbulb_amber.png",
+          "path": "ic_lightbulb_amber.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_moon_amber.png",
+          "path": "ic_moon_amber.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_store_green.png",
+          "path": "ic_store_green.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_store_rose.png",
+          "path": "ic_store_rose.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_trending_up_amber.png",
+          "path": "ic_trending_up_amber.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_trending_up_blue.png",
+          "path": "ic_trending_up_blue.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_trending_up_green.png",
+          "path": "ic_trending_up_green.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_user_blue.png",
+          "path": "ic_user_blue.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_user_rose.png",
+          "path": "ic_user_rose.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_users_amber.png",
+          "path": "ic_users_amber.png",
+          "type": "Image"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "useDefaultAggregateDisplayName": true
+  }
+}
